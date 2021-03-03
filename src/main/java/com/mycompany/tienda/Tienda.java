@@ -195,8 +195,7 @@ public class Tienda {
 		//		Mostramos catalogo con el nuevo stock
 		//		Mostramos mensaje de despedida y salimos del programa
 		//Si no se confirma: Mostramos mensaje de que puede seguir comprando
-                //Comentario que no tiene nada que ver con nada simplemente para 
-                //hacer otro commit
+                
 	}
 
 }
