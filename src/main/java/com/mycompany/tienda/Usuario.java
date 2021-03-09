@@ -54,6 +54,22 @@ public class Usuario {
         setNombre(nomf);
         }
     }
+    public void emailSeguro(String email){
+        boolean correcto =false;
+        String correo="";
+        for (int i = 0; i < email.length(); i++) {
+            if (email.charAt(i)=='@') {
+                correcto=true;
+                correo=email;
+            }
+        }
+        if (correcto) {
+            setEmail(correo);
+        }else{
+            correo=email+"@tienda.es";
+            setEmail(correo);
+        }
+    }
     /**
      * @return the nombre
      */
