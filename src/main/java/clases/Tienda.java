@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.tienda;
+package clases;
 
 /**
  *
  * @author Andrei
  */
+import enumeraciones.Talla;
+import enumeraciones.ClaseE;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -66,8 +68,10 @@ public class Tienda {
 		c.add(new Articulo("0002", "Teclado", 10.00F, 100));
 		c.add(new Articulo("0003", "RJ45 2M", 4.50F, 50));
 		c.add(new Articulo("0004", "Raton", 20.00F, 15));
-                c.add(new Ropa ("0005","Camiseta",20.00F,15,"Rojo",5));
-	}
+                c.add(new Ropa ("Rojo",Talla.L,"0005","Camiseta",20.00F,15));
+                c.add(new Electrodomestico(ClaseE.A,"Hogar","0006","Lavadora",500.00F,20));
+                c.add(new Congelador("Michubishi",30,"",ClaseE.C,"Congelador","0007","Nevera/Congelador",1000.99F,2));
+        }
 
 	private static void addArticuloCatalogo(ArrayList<Articulo> c, Scanner sc, Scanner sn) {
 		System.out.println("Introduce el codigo del nuevo articulo:");

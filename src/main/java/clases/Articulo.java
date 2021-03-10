@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.tienda;
+package clases;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -15,7 +17,8 @@ public class Articulo {
 	private String nombre;
 	private float precio;
 	private int stock;
-	
+	private ArrayList<Opinion>opiniones=new ArrayList();
+        
 	public Articulo() {};
 	
 	public Articulo(String codigo, String nombre, float precio, int stock) {
@@ -24,7 +27,19 @@ public class Articulo {
 		setPrecio(precio);
 		setStock(stock);
 	}
-	
+        public void loggin(String user,String pass){
+            
+        }
+        public void crearOpinion(){
+            loggin();
+            
+        }
+	public void añadirOpinion(Opinion opinion){
+            opiniones.add(opinion);
+        }
+        public void eliminarOpinion(int posicion){
+            opiniones.remove(posicion);
+        }
 	public String getCodigo() {
 		return codigo;
 	}
@@ -88,6 +103,20 @@ public class Articulo {
 	public void ajustarStock(int cantidad) {
 		this.stock += cantidad;
 	}
+
+    /**
+     * @return the opiniones
+     */
+    public ArrayList<Opinion> getOpiniones() {
+        return opiniones;
+    }
+
+    /**
+     * @param opiniones the opiniones to set
+     */
+    public void setOpiniones(ArrayList<Opinion> opiniones) {
+        this.opiniones = opiniones;
+    }
 	
 	
 	
