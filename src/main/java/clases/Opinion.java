@@ -57,7 +57,7 @@ public class Opinion {
      * @param puntuacion the puntuacion to set
      */
     public void setPuntuacion(Enum puntuacion) {
-        this.puntuacion = puntuacion;
+        this.puntuacion = (Punt) puntuacion;
     }
 
     /**
