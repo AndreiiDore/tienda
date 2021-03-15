@@ -5,6 +5,7 @@
  */
 package clases;
 
+import enumeraciones.Punt;
 import java.util.ArrayList;
 
 /**
@@ -17,21 +18,67 @@ public class Articulo {
 	private String nombre;
 	private float precio;
 	private int stock;
-	private ArrayList<Opinion>opiniones=new ArrayList();
+	private ArrayList<Opinion>opiniones;
         
-	public Articulo() {};
+	public Articulo() {
+            opiniones=new ArrayList();
+        };
 	
 	public Articulo(String codigo, String nombre, float precio, int stock) {
 		setCodigo(codigo);
 		setNombre(nombre);
 		setPrecio(precio);
 		setStock(stock);
+                opiniones=new ArrayList();
 	}
-        public void loggin(String user,String pass){
-            
+        public void crearOpinion(Opinion opi){
+            opiniones.add(opi);
         }
-        public void crearOpinion(){
-            loggin();
+        public float mediaOpinion(float media,int num){
+            //chatarra,malo,normal,bueno,estupendo
+            num=0;
+            media=0;
+            for(Opinion o : opiniones){
+                if (o.getPuntuacion()==Punt.chatarra) {
+                    media++;
+                    num++;
+                }
+                if (o.getPuntuacion()==Punt.malo) {
+                    media=media+2;
+                    num++;
+                }
+                if (o.getPuntuacion()==Punt.normal) {
+                    media=media+3;
+                    num++;
+                }
+                if (o.getPuntuacion()==Punt.bueno) {
+                    media=media+4;
+                    num++;
+                }
+                if (o.getPuntuacion()==Punt.estupendo) {
+                    media=media+5;
+                    num++;
+                }
+                
+            }
+            return media/num;
+        }
+        public String showOpinion(){
+            StringBuilder sb = new StringBuilder();
+            for(Opinion o : opiniones){
+                sb.append(o);
+            }
+            return sb.toString();
+        /**
+        sb.append("Usuario:").append(usuario);
+        sb.append("\nPuntuacion:").append(puntuacion);
+        sb.append("\nComentario").append(comentario);
+        sb.append("\nVotos Positivos:").append(voto_positivo);
+        sb.append("\nVotos Negativo:").append(voto_negativo);
+        return sb.toString();
+        */
+        }
+        public void loggin(String user,String pass){
             
         }
 	public void añadirOpinion(Opinion opinion){
