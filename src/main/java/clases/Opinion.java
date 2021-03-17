@@ -11,17 +11,24 @@ import enumeraciones.Punt;
  *
  * @author Andrei
  */
-public class Opinion {
-    private String usuario;
+public class Opinion implements  Comparable<Opinion>{
+    private Usuario usuario;
     private Punt puntuacion;
     private String comentario;
-    private int voto_positivo=0;
-    private int voto_negativo=0;
+    private int voto_positivo;
+    private int voto_negativo;
 
-    public Opinion(String usuario, Punt puntuacion, String comentario) {
+    public Opinion(){
+        this.voto_positivo=0;
+        this.voto_negativo=0;
+    }
+
+    public Opinion(Usuario usuario, Punt puntuacion, String comentario) {
         this.usuario = usuario;
         this.puntuacion =puntuacion;
         this.comentario = comentario;
+        this.voto_positivo=0;
+        this.voto_negativo=0;
     }
     public void darVotoPositivo(){
         voto_positivo++;
@@ -32,17 +39,28 @@ public class Opinion {
     public void añadirOpinion(Opinion opinion){
         
     }
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Usuario:").append(usuario);
+        sb.append("\nPuntuacion:").append(puntuacion);
+        sb.append("\nComentario").append(comentario);
+        sb.append("\nVotos Positivos:").append(voto_positivo);
+        sb.append("\nVotos Negativo:").append(voto_negativo);
+        return sb.toString();
+    }
+    
     /**
      * @return the usuario
      */
-    public String getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
     /**
      * @param usuario the usuario to set
      */
-    public void setUsuario(String usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
@@ -73,6 +91,39 @@ public class Opinion {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    @Override
+    public int compareTo(Opinion o) {
+        //chatarra,malo,normal,bueno,estupendo;
+         if (this.puntuacion.equals(o.puntuacion)) {
+            return 0;
+        }
+        int orden =0;
+        int ordenaux=0;
+         switch(this.puntuacion){
+             case chatarra:orden=1;break;
+             case malo:orden=2;break;
+             case normal:orden=3;break;
+             case bueno:orden=4;break;
+             case estupendo:orden=5;break;
+         }
+         switch(o.puntuacion){
+             case chatarra:ordenaux=1;break;
+             case malo:ordenaux=2;break;
+             case normal:ordenaux=3;break;
+             case bueno:ordenaux=4;break;
+             case estupendo:ordenaux=5;break;
+         }
+        
+        if (orden>ordenaux) {
+            return 1;
+        }else{
+            return -1;
+        }
+        
+    }
+
+   
 
     
     
