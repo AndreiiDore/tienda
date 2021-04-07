@@ -5,6 +5,7 @@
  */
 package clases;
 
+import enumeraciones.Punt;
 import java.util.Scanner;
 
 /**
@@ -14,16 +15,20 @@ import java.util.Scanner;
 public class xD {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        System.out.println("Dime un nombre de usuario que quieres crear:");
-        String nombre=sc.nextLine();
-        System.out.println("Dime una contraseña que deseas:");
-        String contraseña= sc.nextLine();
-        System.out.println("Dime tu correo electronico:");
-        String correo=sc.nextLine();
-        Usuario yo=new Usuario(nombre,contraseña,correo);
-        System.out.println(yo.getNombre());
-        System.out.println(yo.getPassword());
-        System.out.println(yo.getEmail());
+        Usuario user =new Usuario("Andrei","hola","andreimdroe@gmail.com");
+        Opinion opi=new Opinion(user,Punt.chatarra,"");
+        Opinion opi2=new Opinion(user,Punt.estupendo,"");
+        //1
+        opi.compareTo(opi2);
+        if (opi.compareTo(opi2)==0) {
+            System.out.println("Iguales");
+        }
+        if (opi.compareTo(opi2)==1) {
+            System.out.println("Primero mas grande");
+        }
+        if (opi.compareTo(opi2)==-1) {
+            System.out.println("Segundo mas grande");
+        }
     }
     
 }

@@ -11,15 +11,20 @@ package clases;
  */
 import enumeraciones.Talla;
 import enumeraciones.ClaseE;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author Nayra
+ * @author Andrei
  *
  */
 public class Tienda {
-
+    private ArrayList<Usuario>users=new ArrayList();
 	/**
 	 * @param args
 	 */
@@ -39,6 +44,8 @@ public class Tienda {
 			System.out.println("1. Alta Articulo");
 			System.out.println("2. Comprar");
 			System.out.println("3. Confirmar compra");
+                        System.out.println("4. Leer fichero");
+                        System.out.println("5. Guardar fichero");
 			System.out.println("0. Salir");
 			opcion = numeros.nextInt();
 			
@@ -52,6 +59,8 @@ public class Tienda {
 					break;
 				case 3:
 					break;
+                                case 4:loadArticulosFromFile();break;
+                                case 5:;break;
 				case 0:
 					System.out.println("Muchas gracias por su compra.");
 					break;
@@ -64,13 +73,14 @@ public class Tienda {
 	}
 	
 	private static void inicializaCatalogo(ArrayList<Articulo> c) {
-		c.add(new Articulo("0001", "Monitor", 200.00F, 10));
-		c.add(new Articulo("0002", "Teclado", 10.00F, 100));
-		c.add(new Articulo("0003", "RJ45 2M", 4.50F, 50));
-		c.add(new Articulo("0004", "Raton", 20.00F, 15));
-                c.add(new Ropa ("Rojo",Talla.L,"0005","Camiseta",20.00F,15));
+		c.add(new Electrodomestico(ClaseE.F,"Monitores","0001", "Monitor", 200.00F, 10));
+		c.add(new Electrodomestico(ClaseE.D,"Teclado","0002", "Teclado", 10.00F, 100));
+		c.add(new Electrodomestico(ClaseE.D,"Cable de Red","0003", "RJ45 2M", 4.50F, 50));
+		c.add(new Electrodomestico(ClaseE.D,"Raton","0004", "Raton", 20.00F, 15));
+                //c.add(new Ropa ("Rojo",Talla.L,"0005","Camiseta",20.00F,15));
                 c.add(new Electrodomestico(ClaseE.A,"Hogar","0006","Lavadora",500.00F,20));
                 c.add(new Congelador("Michubishi",30,"",ClaseE.C,"Congelador","0007","Nevera/Congelador",1000.99F,2));
+                
         }
 
 	private static void addArticuloCatalogo(ArrayList<Articulo> c, Scanner sc, Scanner sn) {
@@ -82,8 +92,34 @@ public class Tienda {
 		float precio = sn.nextFloat();
 		System.out.println("Introduce el stock del nuevo articulo:");
 		int stock = sn.nextInt();
-		c.add(new Articulo(codigo,nombre,precio,stock));
-	}
+                System.out.println("Dime el consumo enerfetico tiene el electrodomestico tiene");
+                System.out.println("1. A \n2. B \n3. C \n4. D \n5. E \n6. F \n");
+                ClaseE cons=ClaseE.F;
+                int consumoNumero=sn.nextInt();
+                if (consumoNumero==1) {
+                cons= ClaseE.A;
+            }
+                if (consumoNumero==2) {
+                cons= ClaseE.B;
+            }
+                if (consumoNumero==3) {
+                cons= ClaseE.C;
+            }
+                if (consumoNumero==4) {
+                cons= ClaseE.D;
+            }
+                if (consumoNumero==5) {
+                cons= ClaseE.E;
+            }
+                if (consumoNumero==6) {
+                cons= ClaseE.F;
+            }
+                System.out.println("Introduce la gama a la que pertenece este electrodomestico:");
+                String gama = sc.nextLine();
+                
+		c.add(new Electrodomestico(cons,gama,codigo,nombre,precio,stock));
+	//ClaseE calificacionEnergetica, String gama, String codigo, String nombre, float precio, int stock
+        }
 	
 	private static void mostrarCatalogo(ArrayList<Articulo> c) {
 		for (Articulo a: c) {
@@ -202,5 +238,36 @@ public class Tienda {
 		//Si no se confirma: Mostramos mensaje de que puede seguir comprando
                 
 	}
+        /**
+         * metodo para leer ficheros y cargar los articulos en catalogo
+         */
+    public static void loadArticulosFromFile() {
+        File fichero=null;
+        FileReader lector =null;
+        BufferedReader buffer=null;
+        try{
+            fichero= new File ("articulos");
+            lector = new FileReader(fichero);
+            buffer= new BufferedReader(lector);
+            String linea=null;
+            while ((linea=buffer.readLine())!=null) {                
+                System.out.println(linea);
+            }
+        }catch(FileNotFoundException fnfe){
+            fnfe.printStackTrace();
+        }catch(IOException ioe){
+            ioe.printStackTrace();
+        }finally{
+            if (buffer!= null) {
+                try{
+                    buffer.close();
+                }catch(IOException ioe){
+                    ioe.printStackTrace();
+                }
+            }
+        }
+    }
+    //crear Usuario
+    //DarOpionion
 
 }

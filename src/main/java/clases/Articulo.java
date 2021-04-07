@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Andrei
  */
-public class Articulo {
+public abstract class Articulo {
 	
 	private String codigo;
 	private String nombre;
@@ -34,10 +34,10 @@ public class Articulo {
         public void crearOpinion(Opinion opi){
             opiniones.add(opi);
         }
-        public float mediaOpinion(float media,int num){
+        public float mediaOpinion(){
             //chatarra,malo,normal,bueno,estupendo
-            num=0;
-            media=0;
+            int num=0;
+            int media=0;
             for(Opinion o : opiniones){
                 if (o.getPuntuacion()==Punt.chatarra) {
                     media++;
@@ -69,18 +69,13 @@ public class Articulo {
                 sb.append(o);
             }
             return sb.toString();
-        /**
-        sb.append("Usuario:").append(usuario);
-        sb.append("\nPuntuacion:").append(puntuacion);
-        sb.append("\nComentario").append(comentario);
-        sb.append("\nVotos Positivos:").append(voto_positivo);
-        sb.append("\nVotos Negativo:").append(voto_negativo);
-        return sb.toString();
-        */
         }
-        public void loggin(String user,String pass){
-            
-        }
+    /**
+     * metodo abstracto a implementar por las clases hija
+     * @param codigoPromo 
+     */
+        public abstract void applyPromo(String codigoPromo);
+ 
 	public void añadirOpinion(Opinion opinion){
             opiniones.add(opinion);
         }

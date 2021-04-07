@@ -34,8 +34,8 @@ public class Usuario {
     //METODOS DE CONTROL:
 
     /**
-     *
-     * @param pass
+     *Metodo para comporbar que una contraseña es segura
+     * @param pass contraseña segura
      */
     public void passSegura(String pass){
         //La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.

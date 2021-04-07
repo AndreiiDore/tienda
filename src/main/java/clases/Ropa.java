@@ -11,16 +11,18 @@ import enumeraciones.Talla;
  *
  * @author Andrei
  */
-public class Ropa extends Articulo {
+public final class Ropa extends Articulo implements Reciclable{
     private String color;
     private Talla talla;
+    private int reciclada=0;
     
     public Ropa(){}
     
-    public Ropa(String color, Talla talla,String codigo, String nombre, float precio, int stock){
+    public Ropa(String color, Talla talla,int reciclada,String codigo, String nombre, float precio, int stock){
         super(codigo,nombre, precio,stock);
         this.color=color;
         this.talla=talla;
+        this.reciclada=reciclada;
     }
     
     @Override
@@ -54,5 +56,28 @@ public class Ropa extends Articulo {
      */
     public void setTalla(Talla talla) {
         this.talla = talla;
+    }
+    @Override
+    public boolean esReciclable(){
+        if (this.reciclada<3&&0<this.reciclada) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public void applyDiscount(){
+        if (this.esReciclable()==true) {
+            this.setPrecio(((float)this.getPrecio()*0.5));
+        }
+    }
+    
+    @Override
+    public void applyPromo(String codigoPromo) {
+        /*
+        si el codigo promocial es ropapromo le doy un 10%
+        */
+        if (codigoPromo.equals("ropapromo")) {
+            this.setPrecio(((float)this.getPrecio()*0.8));
+        }
     }
 }

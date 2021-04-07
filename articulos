@@ -1,0 +1,5 @@
+F,Monitores,0001,Monitor,200,10
+D,Teclado,0002, Teclado,10, 100
+D,Cable de Red,0003,RJ45 2M,4,50
+A,Hogar,0006,Lavadora,500,20
+C,Congelador,0007,Nevera/Congelador,1000,2

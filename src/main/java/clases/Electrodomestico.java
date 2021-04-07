@@ -56,4 +56,14 @@ public class Electrodomestico extends Articulo {
         this.gama = gama;
     }
 
+    @Override
+    public void applyPromo(String codigoPromo) {
+        if (codigoPromo.equals("siniva")) {
+            this.setPrecio(((float)this.getPrecio()*0.79));
+        }
+        if (codigoPromo.equals("electromo")) {
+            this.setPrecio(((float)this.getPrecio()*0.9));
+        }
+    }
+
 }
