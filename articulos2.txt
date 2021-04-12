@@ -1,0 +1,6 @@
+Monitores, F, 0001, Monitor, 200.0, 10
+Teclado, D, 0002, Teclado, 10.0, 100
+Cable de Red, D, 0003, RJ45 2M, 4.5, 50
+Raton, D, 0004, Raton, 20.0, 15
+Hogar, A, 0006, Lavadora, 500.0, 20
+Michubishi, 30, , 0007, Nevera/Congelador, 1000.99, 2

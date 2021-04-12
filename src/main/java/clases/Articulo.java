@@ -31,6 +31,7 @@ public abstract class Articulo {
 		setStock(stock);
                 opiniones=new ArrayList();
 	}
+        public abstract String toStringFile();
         public void crearOpinion(Opinion opi){
             opiniones.add(opi);
         }

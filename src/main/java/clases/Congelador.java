@@ -27,6 +27,11 @@ public class Congelador extends Electrodomestico{
         this.Comentarios = Comentarios;
     }
     @Override
+    public String toStringFile(){
+        return Marca+", "+AlmacenamientoAveria+", "+Comentarios+", "+super.getCodigo()+", "
+                +super.getNombre()+", "+super.getPrecio()+", "+super.getStock();
+        }
+    @Override
     public int compareTo(Congelador c){
         if (this.getCalificacionEnergetica().equals(c.getCalificacionEnergetica())) {
             return 0;

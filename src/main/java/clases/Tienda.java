@@ -15,7 +15,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -60,7 +62,7 @@ public class Tienda {
 				case 3:
 					break;
                                 case 4:loadArticulosFromFile();break;
-                                case 5:;break;
+                                case 5:saveArticulosToFile(catalogo);break;
 				case 0:
 					System.out.println("Muchas gracias por su compra.");
 					break;
@@ -241,33 +243,62 @@ public class Tienda {
         /**
          * metodo para leer ficheros y cargar los articulos en catalogo
          */
-    public static void loadArticulosFromFile() {
-        File fichero=null;
-        FileReader lector =null;
-        BufferedReader buffer=null;
-        try{
-            fichero= new File ("articulos");
-            lector = new FileReader(fichero);
-            buffer= new BufferedReader(lector);
-            String linea=null;
-            while ((linea=buffer.readLine())!=null) {                
-                System.out.println(linea);
-            }
-        }catch(FileNotFoundException fnfe){
-            fnfe.printStackTrace();
-        }catch(IOException ioe){
-            ioe.printStackTrace();
-        }finally{
-            if (buffer!= null) {
-                try{
-                    buffer.close();
-                }catch(IOException ioe){
-                    ioe.printStackTrace();
+        
+        public static void loadArticulosFromFile() {
+            File fichero=null;
+            FileReader lector =null;
+            BufferedReader buffer=null;
+
+            try{
+                fichero= new File ("articulos");
+                lector = new FileReader(fichero);
+                buffer= new BufferedReader(lector);
+                String linea=null;
+                String [] nuevaRopa;
+                while ((linea=buffer.readLine())!=null) {                
+                    System.out.println(linea);
+                    nuevaRopa=linea.split(",");
+                    //nuevaRopa[];
+                }
+            }catch(FileNotFoundException fnfe){
+                fnfe.printStackTrace();
+            }catch(IOException ioe){
+                ioe.printStackTrace();
+            }finally{
+                if (buffer!= null) {
+                    try{
+                        buffer.close();
+                    }catch(IOException ioe){
+                        ioe.printStackTrace();
+                    }
                 }
             }
         }
-    }
-    //crear Usuario
+            public static void saveArticulosToFile(ArrayList<Articulo> catalogo){
+                FileWriter fichero= null;
+                PrintWriter escritor = null;
+
+                try{
+                    fichero =new FileWriter("articulos2.txt");
+                    escritor=new PrintWriter(fichero);
+                    for (Articulo articulo : catalogo) {
+                         escritor.println(articulo.toStringFile());
+                    }
+                   
+                }catch(IOException ioe){
+                    ioe.printStackTrace();
+                }finally{
+                    if (fichero!=null) {
+                        try {
+                            fichero.close();
+                        } catch (IOException ioe) {
+                            ioe.printStackTrace();
+                        }
+                    }
+            }
+        
+        }
+//crear Usuario
     //DarOpionion
 
 }

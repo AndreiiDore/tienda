@@ -24,6 +24,11 @@ public class Electrodomestico extends Articulo {
         this.gama = gama;
     }
     @Override
+    public String toStringFile(){
+        return gama+", "+calificacionEnergetica+", "+super.getCodigo()+", "
+                    +super.getNombre()+", "+super.getPrecio()+", "+super.getStock();
+    }
+    @Override
     public String toString(){
         return super.toString()+"Calificacion Energetica: "+this.calificacionEnergetica+"\nGama: "+this.gama+"\n";
     }
